@@ -78,6 +78,7 @@
       function resetCart(){
         cartQuantity = 0;
         document.querySelector('.js-quantity').innerHTML = `Cart Quantity: ${cartQuantity}`;
+        localStorage.setItem('quantityString', JSON.stringify(cartQuantity));
         alert('Cart has been reset');
         console.log(`Cart quantity: ${cartQuantity}`);
       }
