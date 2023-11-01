@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css"/>
+    <title>CART QUANTITY</title>
+  </head>
+  <body>
+    <!-- css code -->
+    <style>
+      button{ margin: 5px;}
+      p{ margin: 5px;}
+    </style>
+    <!-- end of css code -->
+
+    <p>Cart Quantity</p>
+
+    <button onclick="
+      console.log(`Cart quantity: ${cartQuantity}`);
+    ">Show Quantity</button>
+
+    <button onclick="
+      updateCartQuantity(1);
+    ">Add To Cart</button>
+
+    <button onclick="
+      updateCartQuantity(2);
+    ">+2</button>
+
+    <button onclick="
+      updateCartQuantity(3);
+    ">+3</button>
+
+    <button onclick="
+      updateCartQuantity(4);
+    ">+4</button>
+
+    <button onclick="
+      updateCartQuantity(5);
+    ">+5</button>
+
+    <button onclick="
+      updateCartQuantity(-1);
+    ">Remove from cart</button>
+
+    <button onclick="
+      updateCartQuantity(-2);
+    ">-2</button>
+
+    <button onclick="
+      updateCartQuantity(-3);
+    ">-3</button>
+
+    <button onclick="
+      resetCart();
+    ">Reset Cart</button>
+
+    <p class="js-quantity">Cart Quantity: 0</p>
+
+    <!-- js code -->
+    <script>
+      let cartQuantity=JSON.parse(localStorage.getItem('quantityString'));
+
+      function updateCartQuantity(num){
+        if(cartQuantity+num < 0 ){
+          alert('not enough items in the cart');
+        }else if(cartQuantity+num > 10){
+          alert('cart cannot exceed 10 items');
+        }else{ //if items are between 0-10 
+          cartQuantity += num;
+          document.querySelector('.js-quantity').innerHTML = `Cart Quantity: ${cartQuantity}`;
+          console.log(`Cart quantity: ${cartQuantity}`);
+        }
+        localStorage.setItem('quantityString', JSON.stringify(cartQuantity));
+      }
+
+      function resetCart(){
+        cartQuantity = 0;
+        document.querySelector('.js-quantity').innerHTML = `Cart Quantity: ${cartQuantity}`;
+        alert('Cart has been reset');
+        console.log(`Cart quantity: ${cartQuantity}`);
+      }
+
+      localStorage.setItem('quantityString', JSON.stringify(cartQuantity));
+      document.querySelector('.js-quantity').innerHTML = `Cart Quantity: ${cartQuantity}`;
+      
+
+    </script>
+  </body>
+</html>
